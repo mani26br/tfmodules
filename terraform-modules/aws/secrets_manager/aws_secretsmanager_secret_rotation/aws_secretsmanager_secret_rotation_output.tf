@@ -1,0 +1,3 @@
+output "secretsmanager_secret_rotation_rotation_enabled" {
+  value = aws_secretsmanager_secret_rotation.secretsmanager_secret_rotation.rotation_enabled
+}

@@ -1,0 +1,8 @@
+
+output "wafv2_web_acl_logging_configuration_redacted_fields_id" {
+  value = aws_wafv2_web_acl_logging_configuration.wafv2_web_acl_logging_configuration_redacted_fields.id
+}
+
+output "wafv2_web_acl_logging_configuration_logging_filter_id" {
+  value = aws_wafv2_web_acl_logging_configuration.wafv2_web_acl_logging_configuration_logging_filter.id
+}
