@@ -1,0 +1,22 @@
+From the CPE team, we have successfully completed the pre-requisites outlined below:
+ 
+	1. Folder Skeleton Creation: The folder structure adhering to our standards has been established within the specified Git repository (POC/ feature branch). https://github.com/Sphinx-Automation/platform-services/tree/feature/azurePOC/azure
+	 
+	2. Jenkins Pipeline Role Creation: A dedicated role named 'ncats\ncatsazurejenkins' has been created and configured with contributor access.
+ 
+	1. Jenkins User Setup: A Jenkins user account ('ncatsazurejenkins@ncats.io') has been provisioned with the necessary permissions, specifically contributor access.
+ 
+	1. Storage Creation for Terraform State Files Backup: A storage repository named 'ncatsazureterraformstate' has been set up for the backup of Terraform state files. 
+	*Replication of state files will be on  on-prem.
+ 
+Moving forward, the ARE/DevOps team is responsible for the following tasks:
+ 
+	1. Configuration of Jenkins Pipeline Automation: We kindly request the ARE team to initiate the setup of the Jenkins pipeline automation utilizing the pre-configured resources.
+	 
+	2. Vault Management:  @Sarvjeet Chinna, could you please confirm your involvement in managing secrets within the vault? Additionally, are we planning to utilize the same on-premises Vault setup? (on-prem)
+ 
+	1. Jenkins Deployment: Regarding the deployment environment for Jenkins, are we planning to utilize an on-premises Jenkins instance, or do we have alternative deployment plans in place?
+ 
+Your confirmation on the above points would greatly assist us in ensuring alignment and a timely commencement of the Jenkins pipeline setup process. Please feel free to reach out if you require any further clarification.
+
+***Note: Jenkins Pipeline (master node on-prem )
