@@ -737,7 +737,7 @@ module "ssm_mw_stop" {
   tags = var.common_tags
 }
 
-###Maintenance_window_targets###
+####Maintenance_window_targets###
 
 module "ssm_mw_target_agm" {
   depends_on = [ module.ssm_mw_start, module.ssm_mw_stop ]
