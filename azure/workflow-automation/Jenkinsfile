@@ -3,7 +3,7 @@ pipeline {
         timestamps()
         skipDefaultCheckout()
     }
-    agent {label 'internal-build.ncats'}
+    agent {label 'internal-build'}
     parameters {
         choice(name: 'Action', choices: 'plan\napply', description: 'Manual build stages')
         string(name: 'ENVIRONMENT', defaultValue: 'cpe', description: 'Role Name (mandatory)')
@@ -14,8 +14,8 @@ pipeline {
     environment {
         PROJECT_NAME     = ""
         INIT_TOKEN       = credentials('')                        // OIDC provider this token is Auto Generated //
-        SPHINX_TOKEN     = credentials('')    
-        ROLE_NAME        = ""                      // Role Name is Mandatory Variable for Vault //
+        SPHINX_TOKEN     = credentials('')     // PatToken Read Only Access for the DevOps Artifacts Repo https://github.com/Sphinx-Automation/devops-pipeline-artifacts.git //
+        ROLE_NAME        = "$ENVIRONMENT-$PROJECT_NAME"                      // Role Name is Mandatory Variable for Vault //
         APP_TYPE         = ""
         SUB_PATH         = ""
     }
@@ -35,7 +35,7 @@ pipeline {
         stage('Submodule and Terraform Init') {
             when {
                 anyOf {
-                    changeset "aws/aws-ci/**"
+                    changeset "azure/workflow-automation/**"
                     triggeredBy 'UserIdCause'
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
                     source prepare.sh
                     '''
                 ansiColor('xterm') {
-                    sh 'cd aws/aws-ci; terraform1.2.4 init'
+                    sh 'cd azure/workflow-automation; terraform1.5.7 init'
                     }
                 }
             }
@@ -55,13 +55,13 @@ pipeline {
         stage('Terraform Plan') {
             when {
                 anyOf {
-                    changeset "aws/aws-ci/**"
+                    changeset "azure/workflow-automation/**"
                     triggeredBy 'UserIdCause'
                 }
             }
             steps {
                 ansiColor('xterm') {
-                    sh 'cd aws/aws-ci; terraform1.2.4 plan'
+                    sh 'cd azure/workflow-automation; terraform1.5.7 plan'
                 }
             }
         }
@@ -72,22 +72,22 @@ pipeline {
                         params.Action == 'apply'
                     }
                     anyOf {
-                        changeset "aws/aws-ci/**"
+                        changeset "azure/workflow-automation/**"
                         triggeredBy 'UserIdCause'
                     }
                 }
             }
             steps {
                 ansiColor('xterm') {
-                    sh 'cd aws/aws-ci; terraform1.2.4 apply -auto-approve'
+                    sh 'cd azure/workflow-automation; terraform1.5.7 apply -auto-approve'
                 }
             }
-        }
-    }
-    post {
-        always {
-            echo " Clean up the workspace in deploy node!"
-            cleanWs()
+            post {
+               always {
+                    echo " Clean up the workspace in deploy node!"
+                    cleanWs()
+                }
+            }
         }
     }
 }

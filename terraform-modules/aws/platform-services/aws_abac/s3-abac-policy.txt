@@ -1,5 +1,0 @@
-resource "aws_iam_policy" "s3_abac_policy" {
-  name        =  var.s3_policyname
-  description = "IAM Policy for S3 ABAC access"
-  policy      = data.aws_iam_policy_document.s3_abac_policy.json
-}

@@ -284,7 +284,7 @@ data "aws_iam_policy_document" "sgc_organization_assume_role_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::082241233635:user/snow_sgc_connector"]
+      identifiers = [""]
     }
 
     actions = ["sts:AssumeRole"]
@@ -435,7 +435,7 @@ data "aws_iam_policy_document" "compliance_user_policy" {
       "sts:AssumeRoleWithSAML",
       "sts:AssumeRoleWithWebIdentity"
     ]
-    resources = ["arn:aws:iam::063208468694:role/GetComplianceReportsRole"]
+    resources = [""]
     effect = "Allow"
   }
   statement {
@@ -446,7 +446,7 @@ data "aws_iam_policy_document" "compliance_user_policy" {
       "sts:GetAccessKeyInfo",
       "sts:GetCallerIdentity"
     ]
-    resources = ["arn:aws:iam::063208468694:role/GetComplianceReportsRole"]
+    resources = [""]
     effect = "Allow"
   }
 }
@@ -460,7 +460,7 @@ data "aws_iam_policy_document" "GetComplianceReportsRole_assumerole_trust_policy
     ]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::063208468694:user/compliance-report-user"]
+      identifiers = [""]
     }
     effect = "Allow"
   }
@@ -527,7 +527,7 @@ data "aws_iam_policy_document" "compliance_user_assumerole_trust_policy" {
     ]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::063208468694:user/compliance-report-user"]
+      identifiers = [""]
     }
     effect = "Allow"
   }
@@ -592,7 +592,7 @@ data "aws_iam_policy_document" "EIC_assume_role_policy" {
       type        = "AWS"
       identifiers = [
         "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
-        "arn:aws:iam::265129476828:user/aws-strides-snow-sgc-user"
+        ""
       ]
     }
 
@@ -685,7 +685,7 @@ data "aws_iam_policy_document" "SNOW_MID_CUR_policy" {
   statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
-    resources = ["arn:aws:iam::905365839001:role/snow-mgmt-cur-role"]
+    resources = [""]
   }
 }
 

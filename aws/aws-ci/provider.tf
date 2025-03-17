@@ -14,8 +14,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "org"           = "ncats"
-      "program"       = "management-services"
+      "org"           = ""
+      "program"       = ""
       "technical-poc" = "cloud-platform-engineering"
     }
   }  

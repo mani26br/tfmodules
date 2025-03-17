@@ -1,5 +1,0 @@
-resource "aws_iam_policy" "sqs_abac_policy" {
-  name        =  var.sqs_policyname
-  description = "IAM Policy for SQS ABAC access"
-  policy      = data.aws_iam_policy_document.sqs_abac_policy.json
-}

@@ -340,32 +340,6 @@ module "compliance_report_role" {
   iam_role_policy = data.aws_iam_policy_document.compliance_user_role_policy_permissions.json
 }
 
-/*
-####aws_backup_plan#####
-
-module "aws_backups_resource_plan" {
-  source = "../../terraform-modules/aws/backup/backup_plan"
-  backup_plan_name = "cloud-platform-backups"
-  backup_plan_rule = [
-    {
-    rule_name = "cloud-platform-backups"
-    target_vault_name = "Default"
-    schedule = "cron(0 12 * * ? *)"
-    start_window = 120
-    completion_window = 360
-    }
-  ]
-}
-
-module "aws_backups_resource_assignment" {
-  source = "../../terraform-modules/aws/backup/backup_selection"
-  backup_selection_iam_role_arn = var.aws_backup_rule_arn
-  backup_selection_name = var.aws_resource_assignment_name    
-  backup_selection_plan_id = var.aws_backup_plan_id 
-  backup_selection_resources = var.aws_assigned_resources
-  backup_selection_tag = var.common_tags     
-}
-*/
 
 ###CPE Approved Security Groups####
 
@@ -376,7 +350,7 @@ module "security_group_prefix" {
 module "security_group_http" {
   source = "../../terraform-modules/aws/securitygroup"
   for_each = toset(data.aws_vpcs.current.ids)
-  sg_name = "cpe-allowed-nih-http-sg"
+  sg_name = ""
   sg_description = "Security groups allowed by CPE team for http access"
   sg_ingress = local.sg_ingress_http
   sg_egress = var.sg_egress
@@ -387,7 +361,7 @@ module "security_group_http" {
 module "security_group_https" {
   source = "../../terraform-modules/aws/securitygroup"
   for_each = toset(data.aws_vpcs.current.ids)
-  sg_name = "cpe-allowed-nih-https-sg"
+  sg_name = ""
   sg_description = "Security groups allowed by CPE team for https access"
   sg_ingress = local.sg_ingress_https
   sg_egress = var.sg_egress
@@ -398,7 +372,7 @@ module "security_group_https" {
 module "security_group_ssh" {
   source = "../../terraform-modules/aws/securitygroup"
   for_each = toset(data.aws_vpcs.current.ids)
-  sg_name = "cpe-allowed-nih-ssh-sg"
+  sg_name = ""
   sg_description = "Security groups allowed by CPE team for ssh access"
   sg_ingress = local.sg_ingress_ssh
   sg_egress = var.sg_egress
@@ -409,7 +383,7 @@ module "security_group_ssh" {
 module "security_group_rdp" {
   source = "../../terraform-modules/aws/securitygroup"
   for_each = toset(data.aws_vpcs.current.ids)
-  sg_name = "cpe-allowed-nih-rdp-sg"
+  sg_name = ""
   sg_description = "Security groups allowed by CPE team for rdp access"
   sg_ingress = local.sg_ingress_rdp
   sg_egress = var.sg_egress
@@ -523,7 +497,7 @@ module "lambda_function_eic_sg_attachment" {
   lambda_function_description = "Attach the eic sg to the ec2 isntances"
   lambda_function_role = module.lambda_eic_sg_attachment_role.iam_role_arn
   lambda_function_runtime = "python3.10"
-  lambda_function_layers = ["arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python310:16"]
+  lambda_function_layers = [""]
   lambda_function_handler = "eic_sg_attachment.lambda_handler"
   lambda_function_filename = module.lambda_archive_eic_sg_attachment.output_path
   lambda_function_source_code_hash = module.lambda_archive_eic_sg_attachment.hash
@@ -561,10 +535,10 @@ module "EC2_SNOW_MID_Server" {
   instance_role = module.SNOW_MID_ec2_role.ec2_profile_name
   appinstance_tags = {     
     "project"       = "snow" 
-    "environment"   = "prod"
-    "access-team"   = "ncats-devops"
-    "techinical-poc" = "ncats-servicenow"
-    "org" = "ncats"
+    "environment"   = ""
+    "access-team"   = ""
+    "techinical-poc" = ""
+    "org" = ""
     "program" = "snow"
   }
 }

@@ -1,5 +1,0 @@
-resource "aws_iam_policy" "sns_abac_policy" {
-  name        =  var.sns_policyname
-  description = "IAM Policy for SNS ABAC access"
-  policy      = data.aws_iam_policy_document.sns_abac_policy.json
-}
