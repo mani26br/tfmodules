@@ -180,7 +180,7 @@ module "cloudwatch_alarms" {
   alarm_name = "${each.key}"
   metric_name = "${each.key}"
   namespace = var.metric_namespace
-  alarm_actions = ["arn:aws:sns:us-east-1:063208468694:aws-ci-cloudwatch-security-alarm"]
+  alarm_actions = [""]
   tags = var.common_tags
 }
 
@@ -610,7 +610,7 @@ module "lambda_function_cost_report" {
   lambda_function_description = "Creates cost report & sends to s3 bucket"
   lambda_function_role = module.lambda_cost_report_role.iam_role_arn
   lambda_function_runtime = "python3.10"
-  lambda_function_layers = ["arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python310:16"]
+  lambda_function_layers = [""]
   lambda_function_handler = "resource_cost_usage_report.lambda_handler"
   lambda_function_filename = module.lambda_archive_cost_report.output_path
   lambda_function_source_code_hash = module.lambda_archive_cost_report.hash
@@ -664,7 +664,7 @@ module "lambda_function_sns_mw" {
   source = "../../terraform-modules/aws/lambda/lambda_function"
   lambda_function_name = var.lambda_start_stop_notificaiton_name
   lambda_function_description = "sns email notificaiton for start/stop maintenance task"
-  lambda_function_layers = ["arn:aws:lambda:us-east-1:063208468694:layer:pytz:1"]
+  lambda_function_layers = [""]
   lambda_function_role = module.lambda_start_stop_role.iam_role_arn
   lambda_function_runtime = "python3.11"
   lambda_function_handler = "sns_mw_notification.lambda_handler"
