@@ -1,0 +1,7 @@
+resource "azurerm_backup_protected_file_share" "backup_protected_file_share" {
+  resource_group_name = var.backup_protected_file_share_resource_group_name
+  recovery_vault_name = var.backup_protected_file_share_recovery_vault_name
+  source_storage_account_id = var.backup_protected_file_share_source_storage_account_id
+  source_file_share_name = var.backup_protected_file_share_source_file_share_name
+  backup_policy_id = var.backup_protected_file_share_backup_policy_id
+}
